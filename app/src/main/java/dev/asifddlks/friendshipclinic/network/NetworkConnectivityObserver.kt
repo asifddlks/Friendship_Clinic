@@ -4,8 +4,6 @@ package dev.asifddlks.friendshipclinic.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
-import android.os.Build
-import dev.asifddlks.friendshipclinic.network.ConnectivityObserver
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class NetworkConnectivityObserver(
-    private val context: Context
+    context: Context
 ) : ConnectivityObserver {
 
     private val connectivityManager =
@@ -44,9 +42,7 @@ class NetworkConnectivityObserver(
                     launch { send(ConnectivityObserver.Status.Unavailable) }
                 }
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                connectivityManager.registerDefaultNetworkCallback(callback)
-            }
+            connectivityManager.registerDefaultNetworkCallback(callback)
             awaitClose {
                 connectivityManager.unregisterNetworkCallback(callback)
             }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/mainPageFragment">
+
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="dev.asifddlks.friendshipclinic.ui.mainPage.MainPageFragment"
+        android:label="fragment_main_page"
+        tools:layout="@layout/fragment_main_page">
+        <action
+            android:id="@+id/action_mainPageFragment_to_createOrUpdatePageFragment"
+            app:destination="@id/createOrUpdatePageFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/createOrUpdatePageFragment"
+        android:name="dev.asifddlks.friendshipclinic.ui.createOrUpdatePage.CreateOrUpdatePageFragment"
+        android:label="fragment_create_or_update_page"
+        tools:layout="@layout/fragment_create_or_update_page">
+        <!--suppress NavigationFile -->
+        <argument
+            android:name="userItem"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+</navigation>

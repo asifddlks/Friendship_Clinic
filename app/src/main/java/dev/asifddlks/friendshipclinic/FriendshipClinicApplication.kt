@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import dev.asifddlks.bhaibhaiclinicApp.utils.extensions.showToast
 import dev.asifddlks.friendshipclinic.network.NetworkConnectivityObserver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,8 +35,6 @@ class FriendshipClinicApplication : Application() {
     private fun prepareDebugOrReleaseBuild() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
-        } else {
-
         }
     }
 
@@ -45,7 +42,7 @@ class FriendshipClinicApplication : Application() {
         CoroutineScope(Dispatchers.IO).launch {
             NetworkConnectivityObserver(applicationContext).observe().collectLatest {
                 Handler(Looper.getMainLooper()).post {
-                    showToast("Connection: $it")
+                    //showToast("Connection: $it")
                 }
             }
         }
